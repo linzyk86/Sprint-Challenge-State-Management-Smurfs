@@ -1,18 +1,20 @@
-// import {FETCHING_QUOTE_START} from '../actions/actions';
-// import {FETCHING_QUOTE_SUCCESS} from '../actions/actions';
+import {FETCHING_DATA_START} from '../actions/actions';
+import {FETCHING_DATA_SUCCESS} from '../actions/actions';
 
 const initialState = {
-    quote: null,
+    name: '',
+    age: null,
+    height: '',
     isFetching: false,
     error: ""
 };
 
 export const reducer = (state = initialState, action) =>{
     switch(action.type){
-        case '':
+        case 'FETCHING_DATA_START':
             return state;
 
-        case ' ':
+        case 'FETCHING_DATA_SUCCESS':
             return state
         default:
             return state;
