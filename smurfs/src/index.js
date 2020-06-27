@@ -9,7 +9,7 @@ import {reducer} from './reducers/reducer';
 import Smurfs from './components/Smurfs';
 
 const logger = ({getState}) =>next=>action=>{
-    console.log("Dispathing action:", action);
+    console.log("Dispatching action:", action);
     next(action);
 };
 

@@ -2,9 +2,7 @@ import {FETCHING_DATA_START} from '../actions/actions';
 import {FETCHING_DATA_SUCCESS} from '../actions/actions';
 
 const initialState = {
-    name: '',
-    age: null,
-    height: '',
+    smurf:[],
     isFetching: false,
     error: ""
 };
@@ -12,10 +10,17 @@ const initialState = {
 export const reducer = (state = initialState, action) =>{
     switch(action.type){
         case 'FETCHING_DATA_START':
-            return state;
+            return {...state, isFetching: true,
+            error: ""};
 
         case 'FETCHING_DATA_SUCCESS':
-            return state
+            console.log(state);
+             return {
+            ...state,
+            smurf: action.payload,
+            isFetching: false,
+            error: ''
+      };
         default:
             return state;
     }

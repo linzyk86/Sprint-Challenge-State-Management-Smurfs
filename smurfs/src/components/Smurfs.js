@@ -1,49 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {getSmurf} from '../actions/actions';
 import { useEffect } from 'react';
 import actions from '../actions/actions'
 
-const handleChanges = ()=>{
+const Smurfs = ({getSmurf, smurf, addSmurf, handleChanges,isFetching, error}) =>{
+    const[newSmurf, setNewSmurf] = useState(smurf);
 
-}
-
-const addSmurf = (smurf)=>{
-    // return setSmurf
-}
-
-
-const Smurfs = ({addSmurf, isFetching, error}) =>{
+     useEffect(()=>{
+        getSmurf();
+    }, []);
    
     if (isFetching){
         return <h2> Loading...</h2>;
     }
+// const handleChanges = (e)=>{
+//     setNewSmurf({e.target.value
+//     });
+// }
+
+//  const addSmurf = (newSmurf)=>{
+//     // return setSmurf
+// // }
 
     return(
         <div>
-        <h2> </h2>
-        <h3></h3>
-        <h3></h3>
+        <h2> {smurf.name}</h2>
+        <h3>{smurf.age}</h3>
+        <h3>{smurf.height}</h3>
 
         <form>
             <label>Name</label>
                 <input
                 name = 'name'
-                // value = {smurf.name}
+                value = {newSmurf.name}
                 onChange = {handleChanges}
                 id = 'name'
             />
              <label>Age</label>
                 <input
                 name = 'age'
-                // value = {smurf.age}
+                value = {newSmurf.age}
                 onChange = {handleChanges}
                 id = 'age'
             />
              <label>Height</label>
                 <input
                 name = 'height'
-                // value = {smurf.height}
+                value = {newSmurf.height}
                 onChange = {handleChanges}
                 id = 'height'
             />
@@ -56,13 +60,8 @@ const Smurfs = ({addSmurf, isFetching, error}) =>{
 
 const mapStateToProps = state =>{
     return{
-        name: state.name,
-        height: state.height,
-        age: state.age,
-        id: state.id,
-        isFetching: state.isFetching,
-        error: state.error
+      smurf:state.smurf
     };
 };
 
-export default connect(mapStateToProps, {addSmurf}) (Smurfs);
+export default connect(mapStateToProps, {getSmurf}) (Smurfs);
