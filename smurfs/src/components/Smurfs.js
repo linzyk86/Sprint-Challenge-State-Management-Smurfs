@@ -6,12 +6,12 @@ import actions from '../actions/actions'
 import axios from 'axios';
 
 const Smurfs = ({ getSmurf, smurf, isFetching, error }) => {
-    //const [newSmurf, setNewSmurf] = useState(smurf);
+    // const [newSmurf, setNewSmurf] = useState(smurf);
     const[newSmurf, setNewSmurf]=useState({
         id:Date.now(),
         name: smurf.name,
         height: smurf.height,
-        age: smurf.height,
+        age: smurf.age,
     });
 
     useEffect(() => {
@@ -23,20 +23,13 @@ const Smurfs = ({ getSmurf, smurf, isFetching, error }) => {
     }
     const handleChanges = (e) => {
         setNewSmurf(
-            { ...newSmurf, [e.target.name]:e.target.value }
+            {...newSmurf, [e.target.name]:e.target.value }
         )    
     };
 
-    const addSmurf = (e, newSmurf) => {
-        newSmurf = {
-            name: e.target.name,
-            age: e.target.age,
-            height: e.target.height
-        }
-        return {
-            ...newSmurf, name: newSmurf.name, age: newSmurf.age, height: newSmurf.height
-        }     
-    }
+    // const addSmurf = (e, newSmurf) => {
+    //     return {...smurf, newSmurf};
+    // }
 
     const formSubmit = e => {
         e.preventDefault();
@@ -52,14 +45,28 @@ const Smurfs = ({ getSmurf, smurf, isFetching, error }) => {
 
     return (
         <div>
-            <div> 
+             <div>
+
+                 {
+                smurf.map((item)=>{
+                    return (
+                        <div>
+                        <h2>Name: {item.name}</h2>
+                        <h3>Height: {item.height}</h3>
+                        <h3>Age: {item.age}</h3>
+                        </div>
+                        
+                    )
+                })} 
+            </div>
+            {/* <div> 
                 <h2> Name: {smurf.name}</h2>
                 <h3>Age: {smurf.age}</h3>
                 <h3>Height: {smurf.height}</h3>  
-            </div>
+            </div> */}
            
             
-            <form onSubmit={addSmurf}>
+            <form >
                 <label>Name</label>
                 <input
                     name='name'
@@ -91,7 +98,8 @@ const Smurfs = ({ getSmurf, smurf, isFetching, error }) => {
 
 const mapStateToProps = state => {
     return {
-        smurf: state.smurf
+        smurf: state.smurf,
+        
     };
 };
 

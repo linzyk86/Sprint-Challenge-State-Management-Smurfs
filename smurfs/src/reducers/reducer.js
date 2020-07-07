@@ -18,7 +18,8 @@ export const reducer = (state = initialState, action) =>{
             console.log(state);
              return {
             ...state,
-            smurf: action.payload[0],//When I put index 0 here it shows first one....idk how to map here
+            smurf: action.payload,
+                    //When I put index 0 here it shows first one....idk how to map here
             isFetching: false,
             error: ''
       };
